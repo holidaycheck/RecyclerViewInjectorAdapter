@@ -4,9 +4,9 @@
 
 Overview
 -----------
-* Tested in production - over 1000 000 installs in the [Holidaycheck app](https://play.google.com/store/apps/details?id=com.holidaycheck)
-* Works with stable ids & no stable ids adapters
-* In most cases requires no changes to your adapter (see the caution)
+* Tested in production - over 1.000.000 installs in the [HolidayCheck App](https://play.google.com/store/apps/details?id=com.holidaycheck)
+* Works with stable IDs & non-stable ID adapters
+* In most cases, requires no changes to your adapter (see [Caution](#caution))
 * Supports multiple view injections
 * Supports all items animations
 * Supports Android 15+
@@ -15,13 +15,13 @@ Overview
 
 [![Demo](./art/demo.gif)](https://www.youtube.com/watch?v=R9rFW_23710)
 
-Add it to your project
+Add it to your Project
 ----------------------
 
 Include the library in your ``build.gradle``
 
 ```groovy
-dependencies{
+dependencies {
     compile 'com.holidaycheck:recyclerviewinjectoradapter:1.0.3'
 }
 ```
@@ -42,7 +42,7 @@ Configuration
 -----
 To enable injecting views you need to wrap your regular adapter with ``RecyclerViewInjectorAdapter`` and set it to ``RecyclerView``.
 
-Assuming that your code looks similar to this one
+Assuming that your code looks similar to this
 
 ```java
 MyAdapter adapter = new MyAdapter();
@@ -63,7 +63,7 @@ recyclerView.setAdapter(injectorAdapter)
 Usage
 -----
 
-After the configuration you can inject views
+After the configuration, you can inject views
 ```java
 injectorAdapter.inject(new InjectedViewCreator() {
     @Override
@@ -87,24 +87,24 @@ Method | Description
 --- | ---
 ``setShowInjectedViews(boolean showInjectedViews)`` | Allows to hide or show all injected views
 ``setDisplayInjectedViewsOnEmptyChildAdapter(boolean display)`` | Decides if injected views should be displayed on empty child adapter
-``setDisplayInjectedViewsOnLowerPosition(boolean display)`` | Decides if injected views should can be displayed on lower position than desired. For example view is injected on position 10, but child adapter has only 5 items.
+``setDisplayInjectedViewsOnLowerPosition(boolean display)`` | Decides if injected views should be displayed on lower position than desired. For example, a view is injected on position 10, but child adapter has only 5 items.
 
 For more details take a look at the javadoc.
 
 Caution
 -----
 * Every update that refers to the regular item should be dispatched to your child adapter.
-* ``getAdapterPosition()`` method of your `RecyclerView.ViewHolder` now returns position that include also injected views below that position. To get the position without injected views included please use ``int realChildAdapterPosition = injectorAdapter.toChildAdapterPosition(getAdapterPosition())`` or get rid of ``getAdapterPosition()`` by passing reference to your data to ViewHolder and then getting position from your underlying data structure.
+* ``getAdapterPosition()`` method of your `RecyclerView.ViewHolder` now returns position that include also injected views below that position. To get the position without injected views included, please use ``int realChildAdapterPosition = injectorAdapter.toChildAdapterPosition(getAdapterPosition())`` or get rid of ``getAdapterPosition()`` by passing reference to your data to ViewHolder and then getting position from your underlying data structure.
 
-Do you want to contribute?
+Do you want to Contribute?
 -----
-Feel free to add any cool and useful feature to the library.
+Feel free to add any cool and useful feature to the library, we're happy to accept Pull Requests.
 
 License
 -------
     The MIT License (MIT)
 
-    Copyright (c) 2016 HolidayCheck
+    Copyright (c) 2016 HolidayCheck AG
 
     Permission is hereby granted, free of charge, to any person obtaining a copy of
     this software and associated documentation files (the "Software"), to deal in
@@ -122,3 +122,4 @@ License
     COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
     IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    
