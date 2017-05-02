@@ -1,0 +1,75 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'RecyclerViewInjectorAdapter'
+
+    publishedGroupId = 'com.holidaycheck'
+    libraryName = 'RecyclerViewInjectorAdapter'
+    artifact = 'recyclerviewinjectoradapter'
+
+    libraryDescription = 'RecyclerViewInjectorAdapter - wraps your regular RecyclerView.Adapter and adds possibility to inject custom views on desired position without hassle.'
+
+    siteUrl = 'https://github.com/holidaycheck/RecyclerViewInjectorAdapter'
+    gitUrl = 'https://github.com/holidaycheck/RecyclerViewInjectorAdapter.git'
+
+    libraryVersion = '1.0.3'
+
+    developerId = 'domsu'
+    developerName = 'Dominik Suszczewicz, Tomasz Krysztofiak, Adam Jodłowski'
+    developerEmail = 'dominik.suszczewicz@holidaycheck.com'
+
+    licenseName = 'The MIT License'
+    licenseUrl = 'https://opensource.org/licenses/MIT'
+    allLicenses = ["MIT"]
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 4
+        versionName "1.0.3"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "com.android.support:recyclerview-v7:25.3.1"
+
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    testCompile "org.hamcrest:hamcrest-core:1.3"
+    testCompile 'org.mockito:mockito-core:2.7.1'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            snapshotRepository(url: snapshotRepositoryUrl) {
+                authentication(userName: deployUser, password: deployPassword)
+            }
+            repository(url: repositoryUrl) {
+                authentication(userName: deployUser, password: deployPassword)
+            }
+            pom.artifactId = 'recyclerviewinjectoradapter'
+        }
+    }
+}
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

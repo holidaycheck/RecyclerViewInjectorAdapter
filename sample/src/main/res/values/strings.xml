@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RecyclerViewInjectorAdapter</string>
+    <string name="control_inject">Inject view at random position</string>
+    <string name="control_remove">Remove injected view</string>
+    <string name="control_hide">Hide injected views</string>
+    <string name="control_show">Show injected views</string>
 </resources>
