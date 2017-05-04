@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/holidaycheck/RecyclerViewInjectorAdapter.svg?branch=master)](https://travis-ci.org/holidaycheck/RecyclerViewInjectorAdapter)
+[![Download](https://api.bintray.com/packages/holidaycheckandroid/maven/RecyclerViewInjectorAdapter/images/download.svg) ](https://bintray.com/holidaycheckandroid/maven/RecyclerViewInjectorAdapter/_latestVersion)
 
 # RecyclerViewInjectorAdapter
 
