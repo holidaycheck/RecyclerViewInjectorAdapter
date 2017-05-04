@@ -19,6 +19,7 @@ public class RecyclerViewInjectorAdapterTestActivity extends Activity {
     private List<Pair<String, Integer>> data = new ArrayList<>();
 
     private ViewGroup rootView;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +73,16 @@ public class RecyclerViewInjectorAdapterTestActivity extends Activity {
 
         injectorAdapter = new RecyclerViewInjectorAdapter<>(adapter);
 
-        RecyclerView recyclerView = new RecyclerView(this);
+        recyclerView = new RecyclerView(this);
         recyclerView.setId(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(null);
         recyclerView.setAdapter(injectorAdapter);
 
         rootView.addView(recyclerView);
+    }
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
     }
 }

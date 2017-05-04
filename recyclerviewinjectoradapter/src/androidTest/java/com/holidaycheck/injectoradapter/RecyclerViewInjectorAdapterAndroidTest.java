@@ -3,6 +3,7 @@ package com.holidaycheck.injectoradapter;
 import android.support.annotation.NonNull;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.rule.UiThreadTestRule;
+import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
@@ -105,6 +106,7 @@ public class RecyclerViewInjectorAdapterAndroidTest {
         List<String> listWithInjectedItems = getChildAdapterDataStringList(childAdapterData);
 
         for (int i = 0; i < listWithInjectedItems.size(); i++) {
+            scrollToPosition(activity.getRecyclerView(), i);
             onView(withRecyclerView(R.id.recycler_view).atPosition(i)).check(matches(withText(listWithInjectedItems.get(i))));
         }
     }
@@ -131,6 +133,7 @@ public class RecyclerViewInjectorAdapterAndroidTest {
         listWithInjectedItems.add(12, INJECTED_TEXT_VIEW_2_TITLE);
 
         for (int i = 0; i < listWithInjectedItems.size(); i++) {
+            scrollToPosition(activity.getRecyclerView(), i);
             onView(withRecyclerView(R.id.recycler_view).atPosition(i)).check(matches(withText(listWithInjectedItems.get(i))));
         }
     }
@@ -161,6 +164,7 @@ public class RecyclerViewInjectorAdapterAndroidTest {
         listWithInjectedItems.add(INJECTED_TEXT_VIEW_3_TITLE);
 
         for (int i = 0; i < listWithInjectedItems.size(); i++) {
+            scrollToPosition(activity.getRecyclerView(), i);
             onView(withRecyclerView(R.id.recycler_view).atPosition(i)).check(matches(withText(listWithInjectedItems.get(i))));
         }
     }
@@ -208,10 +212,12 @@ public class RecyclerViewInjectorAdapterAndroidTest {
             }
 
             for (int i = 0; i < injectedChildAdapterData.size(); i++) {
+                scrollToPosition(activity.getRecyclerView(), i);
                 onView(withRecyclerView(R.id.recycler_view).atPosition(i)).check(matches(withText(injectedChildAdapterData.get(i))));
             }
 
             if (injectedChildAdapterData.size() == 0) {
+                scrollToPosition(activity.getRecyclerView(), 0);
                 onView(withRecyclerView(R.id.recycler_view).atPosition(0)).check(doesNotExist());
             }
         }
@@ -251,6 +257,7 @@ public class RecyclerViewInjectorAdapterAndroidTest {
             }
 
             for (int i = 0; i < injectedChildAdapterData.size(); i++) {
+                scrollToPosition(activity.getRecyclerView(), i);
                 onView(withRecyclerView(R.id.recycler_view).atPosition(i)).check(matches(withText(injectedChildAdapterData.get(i))));
             }
         }
@@ -382,6 +389,7 @@ public class RecyclerViewInjectorAdapterAndroidTest {
             }
 
             for (int i = 0; i < injectedChildAdapterData.size(); i++) {
+                scrollToPosition(activity.getRecyclerView(), i);
                 onView(withRecyclerView(R.id.recycler_view).atPosition(i)).check(matches(withText(injectedChildAdapterData.get(i))));
             }
         }
@@ -402,6 +410,15 @@ public class RecyclerViewInjectorAdapterAndroidTest {
             result.add(item.first);
         }
         return result;
+    }
+
+    private void scrollToPosition(final RecyclerView recyclerView, final int position) throws Throwable {
+        uiThreadTestRule.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.scrollToPosition(position);
+            }
+        });
     }
 
     @NonNull
