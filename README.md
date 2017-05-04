@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/holidaycheck/RecyclerViewInjectorAdapter.svg?branch=master)](https://travis-ci.org/holidaycheck/RecyclerViewInjectorAdapter)
+
 # RecyclerViewInjectorAdapter
 
 ``RecyclerViewInjectorAdapter`` wraps your regular ``RecyclerView.Adapter`` and adds possibility to inject custom views on desired position without hassle.
